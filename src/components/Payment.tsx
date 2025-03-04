@@ -1,10 +1,11 @@
-
 import React, { useState, useRef } from 'react';
+import PurchaseConfirmationModal from './PurchaseConfirmationModal';
 
 const Payment = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Handle card number input with format XXXX XXXX XXXX XXXX
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +35,10 @@ const Payment = () => {
     if (value.length <= 4) {
       setCvv(value);
     }
+  };
+
+  const handleCompletePurchase = () => {
+    setIsModalOpen(true);
   };
 
   return (
@@ -176,7 +181,10 @@ const Payment = () => {
             </div>
           </div>
           
-          <button className="red-button uppercase font-medium tracking-wide">
+          <button 
+            className="red-button uppercase font-medium tracking-wide"
+            onClick={handleCompletePurchase}
+          >
             Complete Purchase
           </button>
         </div>
@@ -221,6 +229,12 @@ const Payment = () => {
           </p>
         </div>
       </div>
+      
+      <PurchaseConfirmationModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={() => console.log('Purchase confirmed')}
+      />
     </div>
   );
 };

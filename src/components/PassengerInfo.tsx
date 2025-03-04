@@ -35,13 +35,13 @@ const PassengerInfo = () => {
                 <span className="absolute inset-y-0 left-3 flex items-center">
                   <div className="circle-icon">R</div>
                 </span>
-                <input type="text" placeholder="First Name" className="input-field pl-10" />
+                <input type="text" placeholder="First Name" className="input-field pl-10" value="Julia" disabled />
               </div>
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Middle Name (optional)</label>
-              <input type="text" placeholder="Middle Name (optional)" className="input-field" />
+              <input type="text" placeholder="Middle Name (optional)" className="input-field" disabled />
             </div>
             
             <div>
@@ -50,7 +50,7 @@ const PassengerInfo = () => {
                 <span className="absolute inset-y-0 left-3 flex items-center">
                   <div className="circle-icon">R</div>
                 </span>
-                <input type="text" placeholder="Last Name" className="input-field pl-10" />
+                <input type="text" placeholder="Last Name" className="input-field pl-10" value="Akimenko" disabled  />
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@ const PassengerInfo = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Frequent Flyer Program(optional)</label>
               <div className="relative">
-                <select className="input-field appearance-none pr-10">
+                <select className="input-field appearance-none pr-10" disabled>
                   <option>Delta Air Lines/SkyMiles</option>
                 </select>
                 <span className="absolute inset-y-0 right-3 flex items-center">
@@ -72,7 +72,7 @@ const PassengerInfo = () => {
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Frequent Flyer Number (optional)</label>
-              <input type="text" placeholder="Frequent Flyer # (opt.)" className="input-field" />
+              <input type="text" placeholder="Frequent Flyer # (opt.)" className="input-field" disabled />
             </div>
           </div>
           
@@ -87,7 +87,7 @@ const PassengerInfo = () => {
                         <div className="circle-icon">R</div>
                       </span>
                       <span className="pl-6">
-                        {date ? format(date, 'PPP') : "Select your date of birth"}
+                        {date ? format(date, 'PPP') : "October 7th, 1993"}
                       </span>
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
@@ -113,8 +113,9 @@ const PassengerInfo = () => {
                 </span>
                 <select 
                   className="input-field appearance-none pl-10 pr-10"
-                  value={gender}
+                  value="female"
                   onChange={(e) => setGender(e.target.value)}
+                  disabled
                 >
                   <option value="">Select</option>
                   <option value="male">Male</option>

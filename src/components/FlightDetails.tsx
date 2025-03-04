@@ -66,6 +66,7 @@ const FlightDetails = () => {
         date="Wed, Mar 12"
         departTime="2:20pm" 
         arriveTime="7:40am"
+        duration="Direct"
         flightCodes="DL5288*, DL194"
       />
       

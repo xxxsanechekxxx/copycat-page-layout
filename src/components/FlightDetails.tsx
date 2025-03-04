@@ -24,7 +24,6 @@ const Flight: React.FC<FlightProps> = ({
             <div>
               <div className="flex items-center">
                 <p className="font-semibold text-delta-blue">{type}</p>
-                <button className="ml-4 text-delta-lightblue text-sm hover:underline">Change Flight</button>
               </div>
               <div className="mt-3 flex items-center">
                 <p className="text-xl font-medium">{from} • {to}</p>

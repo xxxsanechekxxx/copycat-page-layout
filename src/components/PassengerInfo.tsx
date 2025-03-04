@@ -70,7 +70,7 @@ const PassengerInfo = () => {
           
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <label className="block text-sm font-medium text-delta-red mb-1">Date of Birth</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
               <div className="flex space-x-2">
                 <div className="relative w-full">
                   <span className="absolute inset-y-0 left-3 flex items-center">
@@ -187,67 +187,6 @@ const PassengerInfo = () => {
               Learn more on eligible corporate rewards programs, Delta SkyBonus®/SkyMiles for Business, Air France/KLM BlueBiz® or 
               <a href="#" className="text-delta-lightblue hover:underline"> Aeromexico Club Premier Corporate</a>.
             </p>
-          </div>
-          
-          <div className="mt-8">
-            <div className="flex items-center">
-              <input type="checkbox" id="emergency-contact" className="w-5 h-5 border-gray-300 rounded text-delta-blue focus:ring-delta-blue" checked />
-              <label htmlFor="emergency-contact" className="ml-2 text-sm font-medium text-gray-700">
-                Add an Emergency Contact
-              </label>
-            </div>
-            
-            <div className="mt-4">
-              <h3 className="font-medium">Emergency Contact</h3>
-              
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-delta-red mb-1">First Name</label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-3 flex items-center">
-                      <div className="circle-icon">R</div>
-                    </span>
-                    <input type="text" className="input-field pl-10" />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-delta-red mb-1">Last Name</label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-3 flex items-center">
-                      <div className="circle-icon">R</div>
-                    </span>
-                    <input type="text" className="input-field pl-10" />
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Country Code/ Region</label>
-                  <div className="relative">
-                    <select className="input-field appearance-none pr-10">
-                      <option>United States (1)</option>
-                    </select>
-                    <span className="absolute inset-y-0 right-3 flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-delta-red mb-1">Phone#</label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-3 flex items-center">
-                      <div className="circle-icon">R</div>
-                    </span>
-                    <input type="text" className="input-field pl-10" />
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

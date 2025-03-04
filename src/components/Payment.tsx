@@ -1,7 +1,41 @@
 
-import React from 'react';
+import React, { useState, useRef } from 'react';
 
 const Payment = () => {
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
+  
+  // Handle card number input with format XXXX XXXX XXXX XXXX
+  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 16) value = value.slice(0, 16);
+    
+    // Format with spaces after every 4 digits
+    const formatted = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+    setCardNumber(formatted);
+  };
+  
+  // Handle expiry date input with format MM/YY
+  const handleExpiryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 4) value = value.slice(0, 4);
+    
+    if (value.length > 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    
+    setExpiryDate(value);
+  };
+  
+  // Handle CVV input (limit to 4 digits)
+  const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '');
+    if (value.length <= 4) {
+      setCvv(value);
+    }
+  };
+
   return (
     <div className="mt-8 animate-fadeIn">
       <div className="flex items-center">
@@ -32,33 +66,44 @@ const Payment = () => {
         <div className="p-6">
           <h3 className="font-medium">Credit/Debit Card</h3>
           
-          <div className="mt-2 flex space-x-2">
-            <img src="https://www.nerdwallet.com/cdn-cgi/image/width=1800,quality=85/cdn/images/marketplace/credit_cards/561494f4-american-express-blue-cash-preferred-credit-card.png" alt="Amex" className="h-7" />
-            <img src="https://www.universalcards.com.ky/wp-content/uploads/2022/03/Visa-Gold-Front.jpg" alt="Visa" className="h-7" />
-            <img src="https://www.mastercard.us/content/dam/public/mastercardcom/na/us/en/consumers/find-a-card/images/standard-mastercard-card-image.png" alt="Mastercard" className="h-7" />
-            <img src="https://www.discover.com/content/dam/discover/en_us/credit-cards/card-art/discover-it-card-1.png" alt="Discover" className="h-7" />
-            <img src="https://www.jcbusa.com/wp-content/uploads/2021/02/elite-card.png" alt="JCB" className="h-7" />
-            <img src="https://www.dinersclub.com/content/experience-fragments/diners-club/cards/diners-club-premier/master/_jcr_content/root/responsivegrid/container_82341253/card_image.coreimg.png/1663776658071/dc-ca-premier-wc.png" alt="Diners" className="h-7" />
-            <img src="https://www.unionpayintl.com/upload/images/2019-5/1559030408650.png" alt="UnionPay" className="h-7" />
-          </div>
-          
           <p className="mt-4 text-sm">All fields are required unless noted</p>
           
           <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="md:col-span-1">
               <label className="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
-              <input type="text" className="input-field" />
+              <input 
+                type="text" 
+                className="input-field" 
+                placeholder="0000 0000 0000 0000"
+                value={cardNumber}
+                onChange={handleCardNumberChange}
+                maxLength={19}
+              />
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Expiration Date</label>
-              <input type="text" placeholder="MM/YY" className="input-field" />
+              <input 
+                type="text" 
+                placeholder="MM/YY" 
+                className="input-field"
+                value={expiryDate}
+                onChange={handleExpiryChange}
+                maxLength={5}
+              />
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">CVV</label>
               <div className="flex items-center">
-                <input type="text" className="input-field" />
+                <input 
+                  type="text" 
+                  className="input-field" 
+                  placeholder="000"
+                  value={cvv}
+                  onChange={handleCvvChange}
+                  maxLength={4}
+                />
                 <button className="ml-2 text-delta-blue">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
@@ -86,44 +131,6 @@ const Payment = () => {
             <p className="text-sm">
               Earn up to an additional 2 or 3 miles per dollar on this purchase when you use your Delta SkyMiles American Express Card, depending on card type. (<a href="#" className="text-delta-lightblue hover:underline">Terms and Conditions</a>)
             </p>
-          </div>
-        </div>
-        
-        <div className="border-t border-gray-200 p-6">
-          <div className="flex justify-between">
-            <div>
-              <h3 className="font-medium">Add a Delta Gift Card</h3>
-              <p className="text-sm">All fields required</p>
-            </div>
-            
-            <div>
-              <img src="https://logos-world.net/wp-content/uploads/2021/02/Delta-Air-Lines-Logo.png" alt="Delta" className="h-8" />
-            </div>
-          </div>
-          
-          <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="relative md:col-span-1">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Gift Card Number</label>
-              <input type="text" className="input-field" />
-              <button className="absolute top-8 right-3 text-delta-blue">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="16" x2="12" y2="12"></line>
-                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
-              </button>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">PIN or Redemption Code</label>
-              <input type="text" className="input-field" />
-            </div>
-            
-            <div className="flex items-end">
-              <button className="outline-button w-full">
-                Add a Gift Card
-              </button>
-            </div>
           </div>
         </div>
       </div>

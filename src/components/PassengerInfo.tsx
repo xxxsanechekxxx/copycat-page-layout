@@ -1,7 +1,15 @@
 
-import React from 'react';
+import React, { useState } from 'react';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
+import { format } from 'date-fns';
+import { CalendarIcon } from 'lucide-react';
 
 const PassengerInfo = () => {
+  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [gender, setGender] = useState<string>('');
+
   return (
     <div className="mt-8 animate-fadeIn">
       <div className="flex items-center">
@@ -71,48 +79,29 @@ const PassengerInfo = () => {
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
-              <div className="flex space-x-2">
-                <div className="relative w-full">
-                  <span className="absolute inset-y-0 left-3 flex items-center">
-                    <div className="circle-icon">R</div>
-                  </span>
-                  <select className="input-field appearance-none pl-10 pr-10">
-                    <option>MM</option>
-                  </select>
-                  <span className="absolute inset-y-0 right-3 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </span>
-                </div>
-                
-                <div className="relative w-full">
-                  <span className="absolute inset-y-0 left-3 flex items-center">
-                    <div className="circle-icon">R</div>
-                  </span>
-                  <select className="input-field appearance-none pl-10 pr-10">
-                    <option>DD</option>
-                  </select>
-                  <span className="absolute inset-y-0 right-3 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </span>
-                </div>
-                
-                <div className="relative w-full">
-                  <span className="absolute inset-y-0 left-3 flex items-center">
-                    <div className="circle-icon">R</div>
-                  </span>
-                  <select className="input-field appearance-none pl-10 pr-10">
-                    <option>YYYY</option>
-                  </select>
-                  <span className="absolute inset-y-0 right-3 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </span>
-                </div>
+              <div className="relative">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button variant="outline" className={`w-full justify-start text-left font-normal ${!date ? 'text-muted-foreground' : ''}`}>
+                      <span className="absolute inset-y-0 left-3 flex items-center">
+                        <div className="circle-icon">R</div>
+                      </span>
+                      <span className="pl-6">
+                        {date ? format(date, 'PPP') : "Select your date of birth"}
+                      </span>
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={date}
+                      onSelect={setDate}
+                      disabled={(date) => date > new Date()}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
             
@@ -122,8 +111,16 @@ const PassengerInfo = () => {
                 <span className="absolute inset-y-0 left-3 flex items-center">
                   <div className="circle-icon">R</div>
                 </span>
-                <select className="input-field appearance-none pl-10 pr-10">
-                  <option>Select</option>
+                <select 
+                  className="input-field appearance-none pl-10 pr-10"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                >
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="non-binary">Non-binary</option>
+                  <option value="prefer-not-to-say">Prefer not to say</option>
                 </select>
                 <span className="absolute inset-y-0 right-3 flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

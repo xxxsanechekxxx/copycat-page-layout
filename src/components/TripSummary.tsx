@@ -14,7 +14,7 @@ const TripSummary = () => {
         
         <div className="mt-4 flex justify-between">
           <p className="text-delta-blue">Flights</p>
-          <p className="font-medium">$1,799.00</p>
+          <p className="font-medium">$1,430.00</p>
         </div>
         
         <div className="mt-2 flex justify-between">
@@ -25,7 +25,7 @@ const TripSummary = () => {
         <div className="mt-6 pt-4 border-t flex justify-between items-center">
           <p className="text-delta-blue">Amount Due</p>
           <div className="flex items-baseline">
-            <span className="text-2xl font-bold">$1,908</span>
+            <span className="text-2xl font-bold">$1,539</span>
             <span className="text-sm font-semibold mr-2">.61</span>
             <span className="text-sm">USD</span>
           </div>

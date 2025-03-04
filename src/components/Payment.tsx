@@ -39,7 +39,7 @@ const Payment = () => {
   return (
     <div className="mt-8 animate-fadeIn">
       <div className="flex items-center">
-        <div className="step-number bg-delta-blue text-white mr-3">3</div>
+        <div className="step-number bg-delta-blue text-white mr-3">2</div>
         <h2 className="text-xl font-semibold text-delta-blue">Payment</h2>
       </div>
       
@@ -53,13 +53,6 @@ const Payment = () => {
             <button className="text-delta-blue font-medium px-4 py-2 hover:bg-white hover:rounded-md transition-all">
               Use other forms of payment
             </button>
-            
-            <div className="ml-auto">
-              <button className="bg-yellow-100 border border-yellow-200 rounded-md px-4 py-2 flex items-center space-x-2">
-                <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" alt="PayPal" className="h-5" />
-                <span className="text-sm font-medium">Pay now or pay later.</span>
-              </button>
-            </div>
           </div>
         </div>
         
@@ -164,7 +157,7 @@ const Payment = () => {
           <div className="mx-6 text-gray-300">|</div>
           
           <div className="flex items-baseline">
-            <span className="text-2xl font-bold text-delta-blue">$1,799</span>
+            <span className="text-2xl font-bold text-delta-blue">$1,539</span>
             <span className="ml-1 text-sm text-gray-600">MQDs</span>
           </div>
         </div>

@@ -185,7 +185,7 @@ const Payment = () => {
           <div className="mx-6 text-gray-300">|</div>
           
           <div className="flex items-baseline">
-            <span className="text-2xl font-bold text-delta-blue">$1,539</span>
+            <span className="text-2xl font-bold text-delta-blue">$1,569</span>
             <span className="ml-1 text-sm text-gray-600">MQDs</span>
           </div>
         </div>
